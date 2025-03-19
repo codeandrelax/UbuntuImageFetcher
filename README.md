@@ -58,8 +58,9 @@ This program allows you to interact with the Ubuntu Image Fetcher through a comm
 #### --supported-releases
 
 Command:
+
 ```
-./ubuntu_image_fetcher --supported-releases
+./UbuntuImageFetcher --supported-releases
 ```
 
 Output:
@@ -76,6 +77,31 @@ oracular
 ...
 ```
 
-#### 
+#### --current-lts
 
+Command:
+
+```
+./UbuntuImageFetcher --current-lts
+```
+
+Output:
+
+```
+24.04 LTS
+```
+
+#### --sha256 <release>
+
+Command:
+
+```
+./UbuntuImageFetcher --sha256 noble
+```
+
+Output:
+
+```
+32a9d30d18803da72f5936cf2b7b9efcb4d0bb63c67933f17e3bdfd1751de3f3
+```
 
