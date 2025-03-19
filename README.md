@@ -9,6 +9,7 @@ This application uses the Poco C++ Libraries for handling networking and JSON pa
 
 `macOS Sonoma Version 14.3`
 
+`Windows 11`
 
 ## Dependencies
 
