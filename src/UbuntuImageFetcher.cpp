@@ -98,8 +98,6 @@ std::string UbuntuImageFetcher::getCurrentLTSVersion() const {
         }
     }
 
-    std::cout << "Current LTS is:";
-    std::cout << currentLTS << std::endl;
     return currentLTS;
 }
 

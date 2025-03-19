@@ -15,7 +15,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 enable_testing()
 
 add_executable(UbuntuImageFetcher
-    test/main.cpp
+    src/main.cpp
     src/UbuntuImageFetcher.cpp
     test/test_UbuntuImageFetcher.cpp
 )
