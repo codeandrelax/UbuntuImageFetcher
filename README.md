@@ -45,6 +45,12 @@ make
 
 Once build, executable will be found under a name `UbuntuImageFetcher`.
 
+To run tests:
+
+```
+ctest
+```
+
 ## Ubuntu Image Fetcher CLI
 
 This program allows you to interact with the Ubuntu Image Fetcher through a command-line interface (CLI). 
