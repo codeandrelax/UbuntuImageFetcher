@@ -3,7 +3,7 @@
 #ifndef UBUNTUIMAGEFETCHER_H
 #define UBUNTUIMAGEFETCHER_H
 
-#include "IUbuntuImageFetcher.h"
+#include "IUbuntuImageFetcher.hpp"
 #include <Poco/Net/HTTPClientSession.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
