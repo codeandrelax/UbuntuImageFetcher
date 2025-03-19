@@ -31,3 +31,14 @@ brew install poco
 For windows use precompiled package.
 
 Building from source is also an option [here](https://docs.pocoproject.org/current/00200-GettingStarted.html)
+
+## Building the Project
+
+```
+git clone <repo-url>
+cd <repo-directory>
+mkdir build
+cd build
+cmake ..
+make
+```
