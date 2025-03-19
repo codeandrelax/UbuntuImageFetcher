@@ -35,7 +35,17 @@ brew install poco
 
 #### Windows
 
-For windows use precompiled package.
+```
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg
+.\bootstrap-vcpkg.bat
+vcpkg install poco[netssl] --triplet x64-windows
+```
+
+When running `cmake` command make sure to do it like this:
+```
+cmake .. -DCMAKE_TOOLCHAIN_FILE=C:\path\to\vcpkg\scripts\buildsystems\vcpkg.cmake
+```
 
 Building from source is also an option [here](https://docs.pocoproject.org/current/00200-GettingStarted.html)
 
@@ -48,6 +58,11 @@ mkdir build
 cd build
 cmake ..
 make
+```
+
+For Windows:
+```
+cmake .. -DCMAKE_TOOLCHAIN_FILE=C:\path\to\vcpkg\scripts\buildsystems\vcpkg.cmake
 ```
 
 Once build, executable will be found under a name `UbuntuImageFetcher`.
