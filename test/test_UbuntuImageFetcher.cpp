@@ -23,18 +23,21 @@ void testGetCurrentLTSVersion() {
     std::string ltsVersion = fetcher.getCurrentLTSVersion();
 
     // Current LTS can be found here: https://ubuntu.com/about/release-cycle
-    assert(ltsVersion == "noble" && "Current LTS version is incorrect!");
+    // Current is: 24.04 LTS
+    assert(ltsVersion == "24.04 LTS" && "Current LTS version is incorrect!");
     std::cout << "testGetCurrentLTSVersion passed!" << std::endl;
 }
 
 void testGetDisk1ImageSHA256() {
-    // const std::string url = "https://cloud-images.ubuntu.com/releases/streams/v1/com.ubuntu.cloud:released:download.json";
-    // UbuntuImageFetcher fetcher(url);
+    const std::string url = "https://cloud-images.ubuntu.com/releases/streams/v1/com.ubuntu.cloud:released:download.json";
+    UbuntuImageFetcher fetcher(url);
 
-    // std::string sha256 = fetcher.getDisk1ImageSHA256("noble");
+    std::string sha256 = fetcher.getDisk1ImageSHA256("noble");
 
-    // Mock assert
-    // assert(!sha256.empty() && "SHA256 hash is empty!");
+    assert(!sha256.empty() && "SHA256 hash is empty!");
+    assert(sha256 == "32a9d30d18803da72f5936cf2b7b9efcb4d0bb63c67933f17e3bdfd1751de3f3" && 
+           "SHA256 hash for 'noble' release is incorrect!");
+
     std::cout << "testGetDisk1ImageSHA256 passed!" << std::endl;
 }
 

@@ -54,15 +54,106 @@ std::vector<std::string> UbuntuImageFetcher::getSupportedReleases() const {
 }
 
 std::string UbuntuImageFetcher::getCurrentLTSVersion() const {
+    std::string jsonData = fetchSimplestreamsData();
+    Poco::JSON::Object::Ptr root = parseJson(jsonData);
+    if (!root) {
+        std::cerr << "Failed to parse JSON data" << std::endl;
+        return "N/A";
+    }
 
-    std::cout << "N/A";
-    return "N/A";
+    const Poco::JSON::Object::Ptr products = root->getObject("products");
+    if (!products) {
+        std::cerr << "No products object found in JSON data" << std::endl;
+        return "N/A";
+    }
+
+    std::string currentLTS = "N/A";
+    int highestVersion = 0;
+
+    for (const auto& productEntry : *products) {
+        const Poco::Dynamic::Var& productValue = productEntry.second;
+
+        if (productValue.type() == typeid(Poco::JSON::Object::Ptr)) {
+            Poco::JSON::Object::Ptr productObj = productValue.extract<Poco::JSON::Object::Ptr>();
+
+            if (productObj->has("supported") && productObj->getValue<bool>("supported") &&
+                productObj->has("release_title")) {
+                
+                std::string releaseTitle = productObj->getValue<std::string>("release_title");
+
+                if (releaseTitle.find("LTS") != std::string::npos) {
+                    std::stringstream ss(releaseTitle);
+                    int major, minor;
+                    char dot;
+                    if (ss >> major >> dot >> minor && dot == '.') {
+                        int versionNumber = major * 100 + minor;
+
+                        if (versionNumber > highestVersion) {
+                            highestVersion = versionNumber;
+                            currentLTS = releaseTitle;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    std::cout << "Current LTS is:";
+    std::cout << currentLTS << std::endl;
+    return currentLTS;
 }
 
 std::string UbuntuImageFetcher::getDisk1ImageSHA256(const std::string& release) const {
+    std::string jsonData = fetchSimplestreamsData();
+    Poco::JSON::Object::Ptr root = parseJson(jsonData);
+    if (!root) {
+        std::cerr << "Failed to parse JSON data" << std::endl;
+        return "SHA256 not found";
+    }
 
-    // return "SHA256 not found";
-    return "UbuntuImageFetcher::getDisk1ImageSHA256";
+    const Poco::JSON::Object::Ptr products = root->getObject("products");
+    if (!products) {
+        std::cerr << "No products object found in JSON data" << std::endl;
+        return "SHA256 not found";
+    }
+
+    for (const auto& productEntry : *products) {
+        const Poco::Dynamic::Var& productValue = productEntry.second;
+
+        if (productValue.type() == typeid(Poco::JSON::Object::Ptr)) {
+            Poco::JSON::Object::Ptr productObj = productValue.extract<Poco::JSON::Object::Ptr>();
+
+            if (productObj->has("arch") && productObj->getValue<std::string>("arch") == "amd64" &&
+                productObj->has("release") && productObj->getValue<std::string>("release") == release) {
+
+                if (productObj->has("versions")) {
+                    Poco::JSON::Object::Ptr versionsObj = productObj->getObject("versions");
+
+                    for (const auto& versionEntry : *versionsObj) {
+                        const Poco::Dynamic::Var& versionValue = versionEntry.second;
+
+                        if (versionValue.type() == typeid(Poco::JSON::Object::Ptr)) {
+                            Poco::JSON::Object::Ptr versionObj = versionValue.extract<Poco::JSON::Object::Ptr>();
+
+                            if (versionObj->has("items")) {
+                                Poco::JSON::Object::Ptr itemsObj = versionObj->getObject("items");
+
+                                if (itemsObj->has("disk1.img")) {
+                                    Poco::JSON::Object::Ptr disk1ImgObj = itemsObj->getObject("disk1.img");
+
+                                    if (disk1ImgObj->has("sha256")) {
+                                        return disk1ImgObj->getValue<std::string>("sha256");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return "SHA256 not found";
 }
 
 std::string UbuntuImageFetcher::fetchSimplestreamsData() const {
