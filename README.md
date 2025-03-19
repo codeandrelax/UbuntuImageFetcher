@@ -42,3 +42,40 @@ cd build
 cmake ..
 make
 ```
+
+Once build, executable will be found under a name `UbuntuImageFetcher`.
+
+## Ubuntu Image Fetcher CLI
+
+This program allows you to interact with the Ubuntu Image Fetcher through a command-line interface (CLI). 
+
+```
+./ubuntu_image_fetcher --option [arguments]
+```
+
+### Options:
+
+#### --supported-releases
+
+Command:
+```
+./ubuntu_image_fetcher --supported-releases
+```
+
+Output:
+
+```
+hirsute
+impish
+jammy
+kinetic
+lunar
+mantic
+noble
+oracular
+...
+```
+
+#### 
+
+
