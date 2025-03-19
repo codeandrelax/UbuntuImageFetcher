@@ -28,12 +28,6 @@ std::vector<std::string> UbuntuImageFetcher::getSupportedReleases() const {
         return releases;
     }
 
-    // std::ostringstream jsonStream;
-    // Poco::JSON::Stringifier::stringify(*root, jsonStream, 2);
-    // std::string rootString = jsonStream.str();
-
-    // std::cout << "Root JSON: " << rootString << std::endl;
-
     const Poco::JSON::Object::Ptr products = root->getObject("products");
     if (!products) {
         std::cerr << "No products object found in JSON data" << std::endl;
