@@ -52,6 +52,7 @@ Building from source is also an option [here](https://docs.pocoproject.org/curre
 
 ## Building the Project
 
+If under Linux (Ubuntu) or macOS:
 ```
 git clone <repo-url>
 cd <repo-directory>
@@ -61,9 +62,15 @@ cmake ..
 make
 ```
 
+If under Windows
 For Windows:
 ```
+git clone <repo-url>
+cd <repo-directory>
+mkdir build
+cd build
 cmake .. -DCMAKE_TOOLCHAIN_FILE=C:\path\to\vcpkg\scripts\buildsystems\vcpkg.cmake
+cmake --build . --config Release
 ```
 
 Once build, executable will be found under a name `UbuntuImageFetcher`.
