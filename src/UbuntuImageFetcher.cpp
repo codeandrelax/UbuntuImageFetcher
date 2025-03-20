@@ -1,7 +1,6 @@
 #include "UbuntuImageFetcher.hpp"
 #include <iostream>
-#include <Poco/Net/HTTPSClientSession.h>
-#include <Poco/URI.h>
+#include <filesystem>
 
 /**
  * @file UbuntuImageFetcher.cpp

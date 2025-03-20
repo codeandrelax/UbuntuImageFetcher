@@ -3,15 +3,22 @@
 #ifndef UBUNTUIMAGEFETCHER_H
 #define UBUNTUIMAGEFETCHER_H
 
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <filesystem>
+
 #include "IUbuntuImageFetcher.hpp"
+
 #include <Poco/Net/HTTPClientSession.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
 #include <Poco/StreamCopier.h>
 #include <Poco/JSON/Object.h>
 #include <Poco/JSON/Parser.h>
-#include <string>
-#include <vector>
+#include <Poco/Net/HTTPSClientSession.h>
+#include <Poco/URI.h>
 
 /**
  * @file UbuntuImageFetcher.h
