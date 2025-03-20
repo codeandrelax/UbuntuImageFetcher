@@ -18,7 +18,9 @@ Path to git repo: https://github.com/codeandrelax/UbuntuImageFetcher
 This project relies on the Poco library for network communication and JSON handling. 
 You need to install Poco on your system before compiling and running the project.
 
-### Installation
+### Dependencies
+
+This project has dependanct on Poco libraries.
 
 #### Linux (Ubuntu-based)
 
@@ -37,6 +39,8 @@ brew install poco
 ```
 
 #### Windows
+
+To install Poco on Windows use following:
 
 ```
 git clone https://github.com/microsoft/vcpkg.git
