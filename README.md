@@ -9,6 +9,7 @@ This application uses the Poco C++ Libraries for handling networking and JSON pa
 
 `macOS Sonoma Version 14.3`
 
+`Windows 11`
 
 ## Dependencies
 
@@ -35,12 +36,23 @@ brew install poco
 
 #### Windows
 
-For windows use precompiled package.
+```
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg
+.\bootstrap-vcpkg.bat
+vcpkg install poco[netssl] --triplet x64-windows
+```
+
+When running `cmake` command make sure to do it like this:
+```
+cmake .. -DCMAKE_TOOLCHAIN_FILE=C:\path\to\vcpkg\scripts\buildsystems\vcpkg.cmake
+```
 
 Building from source is also an option [here](https://docs.pocoproject.org/current/00200-GettingStarted.html)
 
 ## Building the Project
 
+### For Linux (Ubuntu) and macOS:
 ```
 git clone <repo-url>
 cd <repo-directory>
@@ -50,8 +62,38 @@ cmake ..
 make
 ```
 
+To run (eg.):
+```
+./UbuntuImageFetcher --supported-releases
+```
+
+### For Windows
+```
+git clone <repo-url>
+cd <repo-directory>
+mkdir build
+cd build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=C:\path\to\vcpkg\scripts\buildsystems\vcpkg.cmake
+cmake --build . --config Release
+```
+
 Once build, executable will be found under a name `UbuntuImageFetcher`.
 
+Before you're able to run the executable, you need to set path to `SSL_CERT_FILE`
+Windows doesn't have default CA certificates set.
+You can download them from [here](https://curl.se/docs/caextract.html)
+Do so with:
+```
+ $env:SSL_CERT_FILE = <path_to_downloaded_cacert\cacert.pem>
+```
+
+To run the executable (eg.):
+```
+cd Release
+.\UbuntuImageFetcher.exe --supported-releases
+```
+
+#### Testing
 To run tests:
 
 ```
