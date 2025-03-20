@@ -89,6 +89,7 @@ Do so with:
 
 To run the executable (eg.):
 ```
+cd Release
 .\UbuntuImageFetcher.exe --supported-releases
 ```
 
