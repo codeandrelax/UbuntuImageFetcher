@@ -52,7 +52,7 @@ Building from source is also an option [here](https://docs.pocoproject.org/curre
 
 ## Building the Project
 
-If under Linux (Ubuntu) or macOS:
+### For Linux (Ubuntu) and macOS:
 ```
 git clone <repo-url>
 cd <repo-directory>
@@ -62,8 +62,12 @@ cmake ..
 make
 ```
 
-If under Windows
-For Windows:
+To run (eg.):
+```
+./UbuntuImageFetcher --supported-releases
+```
+
+### For Windows
 ```
 git clone <repo-url>
 cd <repo-directory>
@@ -75,6 +79,20 @@ cmake --build . --config Release
 
 Once build, executable will be found under a name `UbuntuImageFetcher`.
 
+Before you're able to run the executable, you need to set path to `SSL_CERT_FILE`
+Windows doesn't have default CA certificates set.
+You can download them from [here](https://curl.se/docs/caextract.html)
+Do so with:
+```
+ $env:SSL_CERT_FILE = <path_to_downloaded_cacert\cacert.pem>
+```
+
+To run the executable (eg.):
+```
+.\UbuntuImageFetcher.exe --supported-releases
+```
+
+#### Testing
 To run tests:
 
 ```
