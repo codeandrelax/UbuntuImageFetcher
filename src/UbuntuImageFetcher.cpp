@@ -1,6 +1,4 @@
 #include "UbuntuImageFetcher.hpp"
-#include <iostream>
-#include <filesystem>
 
 /**
  * @file UbuntuImageFetcher.cpp
