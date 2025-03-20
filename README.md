@@ -3,6 +3,8 @@
 UbuntuImageFetcher is a C++ project that fetches the latest Ubuntu Cloud image information in Simplestreams format. 
 This application uses the Poco C++ Libraries for handling networking and JSON parsing.
 
+Path to git repo: https://github.com/codeandrelax/UbuntuImageFetcher
+
 ## Tested on:
 
 `Ubuntu 22.04.4 LTS`
